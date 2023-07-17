@@ -1,0 +1,154 @@
+[
+    {
+      "image_url": "ssd1.png",
+      "price": "99 BHD",
+      "name": "Product 1",
+      "category_number": 1
+    },
+    {
+      "image_url": "i51.png",
+      "price": "199 BHD",
+      "name": "Product 3",
+      "category_number": 1
+    },
+    {
+      "image_url": "graphiccard1.png",
+      "price": "159 BHD",
+      "name": "Product 6",
+      "category_number": 1
+    },
+    {
+      "image_url": "cooler1.png",
+      "price": "299 BHD",
+      "name": "Product 9",
+      "category_number": 1
+    },
+    {
+      "image_url": "powersupply1.png",
+      "price": "129 BHD",
+      "name": "Product 12",
+      "category_number": 1
+    },
+    {
+      "image_url": "motherboard1.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 1
+    },
+    {
+      "image_url": "case1.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 1
+    },
+    {
+      "image_url": "ram1.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 1
+    },
+
+
+
+    {
+      "image_url": "ssd2.png",
+      "price": "99 BHD",
+      "name": "Product 1",
+      "category_number": 2
+    },
+    {
+      "image_url": "i52.png",
+      "price": "199 BHD",
+      "name": "Product 3",
+      "category_number": 2
+    },
+    {
+      "image_url": "graphiccard2.PNG",
+      "price": "159 BHD",
+      "name": "Product 6",
+      "category_number": 2
+    },
+    {
+      "image_url": "cooler2.png",
+      "price": "299 BHD",
+      "name": "Product 9",
+      "category_number": 2
+    },
+    {
+      "image_url": "powersupply2.png",
+      "price": "129 BHD",
+      "name": "Product 12",
+      "category_number": 2
+    },
+    {
+      "image_url": "motherboard2.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 2
+    },
+    {
+      "image_url": "case2.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 2
+    },
+    {
+      "image_url": "ram2.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 2
+    },
+
+
+
+    {
+      "image_url": "ssd3.png",
+      "price": "99 BHD",
+      "name": "Product 1",
+      "category_number": 3
+    },
+    {
+      "image_url": "i33.png",
+      "price": "199 BHD",
+      "name": "Product 3",
+      "category_number": 3
+    },
+    {
+      "image_url": "graphiccard3.png",
+      "price": "159 BHD",
+      "name": "Product 6",
+      "category_number": 3
+    },
+    {
+      "image_url": "cooler3.png",
+      "price": "299 BHD",
+      "name": "Product 9",
+      "category_number": 3
+    },
+    {
+      "image_url": "powersupply3.png",
+      "price": "129 BHD",
+      "name": "Product 12",
+      "category_number": 3
+    },
+    {
+      "image_url": "motherboard3.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 3
+    },
+    {
+      "image_url": "case3.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 3
+    },
+    {
+      "image_url": "ram3.png",
+      "price": "79 BHD",
+      "name": "Product 18",
+      "category_number": 3
+    }
+    
+  ]
+  
