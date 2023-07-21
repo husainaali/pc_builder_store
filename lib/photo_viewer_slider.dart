@@ -26,7 +26,7 @@ class PhotoViewerSlider extends StatelessWidget {
                       title: const Text('Pop-up Window'),
                       content: SingleChildScrollView(
                         child: SizedBox(
-                          height: rty00.0,
+                          height: 200.0,
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: products.length,
