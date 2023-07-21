@@ -3,22 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:pc_builder_store/photo_viewer_slider.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 181, 161, 103),
-        title: Text(widget.title),
+        title: Text(title),
       ),
       drawer: MediaQuery.of(context).size.width < 1040
           ? Drawer(
@@ -64,46 +59,44 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               ConstrainedBox(
                 constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width / 6),
-                child: Expanded(
-                  flex: 1,
-                  child: Visibility(
-                    visible: MediaQuery.of(context).size.width > 1040,
-                    child: Container(
-                      color: const Color.fromARGB(255, 255, 227, 151),
-                      child: ListView(
-                        children: [
-                          ListTile(
-                            leading: const Icon(Icons.home),
-                            title: const Text('Home'),
-                            onTap: () {
-                              // Handle home item tap
-                            },
-                          ),
-                          ListTile(
-                            leading: const Icon(Icons.shopping_cart),
-                            title: const Text('Cart'),
-                            onTap: () {
-                              // Handle cart item tap
-                            },
-                          ),
-                          ListTile(
-                            leading: const Icon(Icons.settings),
-                            title: const Text('Settings'),
-                            onTap: () {
-                              // Handle settings item tap
-                            },
-                          ),
-                          const Divider(),
-                          ListTile(
-                            leading: const Icon(Icons.info),
-                            title: const Text('About'),
-                            onTap: () {
-                              // Handle about item tap
-                            },
-                          ),
-                        ],
-                      ),
+                  maxWidth: MediaQuery.of(context).size.width / 6,
+                ),
+                child: Visibility(
+                  visible: MediaQuery.of(context).size.width > 1040,
+                  child: Container(
+                    color: const Color.fromARGB(255, 255, 227, 151),
+                    child: ListView(
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.home),
+                          title: const Text('Home'),
+                          onTap: () {
+                            // Handle home item tap
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.shopping_cart),
+                          title: const Text('Cart'),
+                          onTap: () {
+                            // Handle cart item tap
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.settings),
+                          title: const Text('Settings'),
+                          onTap: () {
+                            // Handle settings item tap
+                          },
+                        ),
+                        const Divider(),
+                        ListTile(
+                          leading: const Icon(Icons.info),
+                          title: const Text('About'),
+                          onTap: () {
+                            // Handle about item tap
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -134,12 +127,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                         style: TextStyle(fontSize: 16),
                                       ),
                                       SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                4,
-                                        width:
-                                            MediaQuery.of(context).size.height /
-                                                1.2,
+                                        height: MediaQuery.of(context)
+                                                .size
+                                                .height /
+                                            4,
+                                        width: MediaQuery.of(context)
+                                                .size
+                                                .height /
+                                            1.2,
                                         child: FutureBuilder<List<PhotoData>>(
                                           future: loadPhotosFromJson(),
                                           builder: (context, snapshot) {
@@ -162,8 +157,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 20,
+                                    width: MediaQuery.of(context)
+                                            .size
+                                            .width /
+                                        20,
                                   ),
                                   Column(
                                     children: [
@@ -172,6 +169,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                         style: TextStyle(fontSize: 16),
                                       ),
                                       SizedBox(
+                                        height: MediaQuery.of(context)
+                                                .size
+                                                .height /
+                                            4,
+                                        width: MediaQuery.of(context)
+                                                .size
+                                                .height /
+                                            2.2,
+                                        child: SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
@@ -180,69 +186,57 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   .size
                                                   .height /
                                               2.2,
-                                          child: SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                2.2,
-                                            child: Container(
-                                              width: double.infinity,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5.0),
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image:
-                                                      AssetImage("photo1.png"),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    width: double.infinity,
-                                                    color: Colors.black
-                                                        .withOpacity(0.5),
-                                                    child: const Text(
-                                                      "630 BHD",
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20.0,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    width: double.infinity,
-                                                    color: Colors.black
-                                                        .withOpacity(0.5),
-                                                    child: const Text(
-                                                      "photo.name",
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 16.0,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                  ),
-                                                ],
+                                          child: Container(
+                                            width: double.infinity,
+                                            margin: const EdgeInsets.symmetric(
+                                              horizontal: 5.0,
+                                            ),
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage("photo1.png"),
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
-                                          )),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  width: double.infinity,
+                                                  color: Colors.black
+                                                      .withOpacity(0.5),
+                                                  child: const Text(
+                                                    "630 BHD",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  width: double.infinity,
+                                                  color: Colors.black
+                                                      .withOpacity(0.5),
+                                                  child: const Text(
+                                                    "photo.name",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 16.0,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ],

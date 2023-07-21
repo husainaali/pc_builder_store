@@ -7,28 +7,28 @@ import 'package:flutter/material.dart';
 class PhotoViewerSlider extends StatelessWidget {
   final List<PhotoData> photos;
 
-  const PhotoViewerSlider({super.key, required this.photos});
+  const PhotoViewerSlider({Key? key, required this.photos}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: CarouselSlider(
-        items: photos.map((photo) {
-          return Builder(
-            builder: (BuildContext context) {
-              return GestureDetector(
-                onTap: () async {
-                  List<Product> products =
-                      await loadProductsFromJson(context, 'products.json');
-
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Pop-up Window'),
-                        content: SizedBox(
-                          height: 200.0,
+    return CarouselSlider(
+      items: photos.map((photo) {
+        return Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () async {
+                List<Product> products =
+                    await loadProductsFromJson(context, 'products.json');
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Pop-up Window'),
+                      content: SingleChildScrollView(
+                        child: SizedBox(
+                          height: rty00.0,
                           child: ListView.builder(
+                            shrinkWrap: true,
                             itemCount: products.length,
                             itemBuilder: (BuildContext context, int index) {
                               Product product = products[index];
@@ -40,83 +40,84 @@ class PhotoViewerSlider extends StatelessWidget {
                                 ),
                                 title: Text(product.name),
                                 subtitle: Text(
-                                    'Category: ${product.categoryNumber}\nPrice: \$${product.price.toStringAsFixed(2)}'),
+                                  'Category: ${product.categoryNumber}\nPrice: \$${double.parse(product.price).toStringAsFixed(2)}',
+                                ),
                               );
                             },
                           ),
                         ),
-                        actions: [
-                          ElevatedButton(
-                            onPressed: () {
-                              // Perform the "Add to Cart" action here
-                              // You can access the selected products from the 'products' list
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text('Add to Cart'),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text('Close'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                child: Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(photo.imageUrl),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        width: double.infinity,
-                        color: Colors.black.withOpacity(0.5),
-                        child: Text(
-                          photo.price,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        width: double.infinity,
-                        color: Colors.black.withOpacity(0.5),
-                        child: Text(
-                          photo.name,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                          ),
-                          textAlign: TextAlign.center,
+                      actions: [
+                        ElevatedButton(
+                          onPressed: () {
+                            // Perform the "Add to Cart" action here
+                            // You can access the selected products from the 'products' list
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Add to Cart'),
                         ),
-                      ),
-                    ],
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Close'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(photo.imageUrl),
+                    fit: BoxFit.cover,
                   ),
                 ),
-              );
-            },
-          );
-        }).toList(),
-        options: CarouselOptions(
-          autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 4),
-          enlargeCenterPage: true,
-          viewportFraction: 0.4, // Adjust the value as needed
-          aspectRatio: 16 / 9,
-        ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      width: double.infinity,
+                      color: Colors.black.withOpacity(0.5),
+                      child: Text(
+                        photo.price,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      width: double.infinity,
+                      color: Colors.black.withOpacity(0.5),
+                      child: Text(
+                        photo.name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      }).toList(),
+      options: CarouselOptions(
+        autoPlay: true,
+        autoPlayInterval: const Duration(seconds: 4),
+        enlargeCenterPage: true,
+        viewportFraction: 0.4, // Adjust the value as needed
+        aspectRatio: 16 / 9,
       ),
     );
   }
@@ -145,7 +146,7 @@ class PhotoData {
 class Product {
   final String name;
   final int categoryNumber;
-  final double price;
+  final String price; // Change the type to String
   final String imageUrl;
 
   Product({
@@ -165,7 +166,7 @@ Future<List<Product>> loadProductsFromJson(
   for (var item in jsonData) {
     products.add(Product(
       imageUrl: item['image_url'],
-      price: item['price'].toDouble(),
+      price: item['price'], // Store the price as a string
       name: item['name'],
       categoryNumber: item['category_number'],
     ));
