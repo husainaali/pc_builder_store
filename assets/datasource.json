@@ -2,17 +2,21 @@
   {
     "imageUrl": "photo1.png",
     "price": "790 BHD",
-    "name": "Photo 1"
+    "name": "Photo 1",
+    "category_number": 1
   },
   {
     "imageUrl": "photo2.png",
     "price": "520 BHD",
-    "name": "Photo 2"
+    "name": "Photo 2",
+    "category_number": 2
   },
   {
     "imageUrl": "photo3.png",
     "price": "630 BHD",
-    "name": "Photo 3"
+    "name": "Photo 3",
+    "category_number": 3
+
   }
 
 ]

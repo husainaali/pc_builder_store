@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:pc_builder_store/grid_view_page.dart';
 import 'package:pc_builder_store/photo_viewer_slider.dart';
+
+import 'cart_page.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -30,7 +33,10 @@ class MyHomePage extends StatelessWidget {
                     leading: const Icon(Icons.shopping_cart),
                     title: const Text('Cart'),
                     onTap: () {
-                      // Handle cart item tap
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CartPage()),
+                      );
                     },
                   ),
                   ListTile(
@@ -46,6 +52,17 @@ class MyHomePage extends StatelessWidget {
                     title: const Text('About'),
                     onTap: () {
                       // Handle about item tap
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.login),
+                    title: const Text('Login'),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => LoginDialog(),
+                      );
                     },
                   ),
                 ],
@@ -78,7 +95,11 @@ class MyHomePage extends StatelessWidget {
                           leading: const Icon(Icons.shopping_cart),
                           title: const Text('Cart'),
                           onTap: () {
-                            // Handle cart item tap
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CartPage()),
+                            );
                           },
                         ),
                         ListTile(
@@ -94,6 +115,17 @@ class MyHomePage extends StatelessWidget {
                           title: const Text('About'),
                           onTap: () {
                             // Handle about item tap
+                          },
+                        ),
+                        const Divider(),
+                        ListTile(
+                          leading: const Icon(Icons.login),
+                          title: const Text('Login'),
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => LoginDialog(),
+                            );
                           },
                         ),
                       ],
@@ -123,18 +155,16 @@ class MyHomePage extends StatelessWidget {
                                   Column(
                                     children: [
                                       const Text(
-                                        'New offers!!',
+                                        'Choose according to your budget.',
                                         style: TextStyle(fontSize: 16),
                                       ),
                                       SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                            4,
-                                        width: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                            1.2,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                4,
+                                        width:
+                                            MediaQuery.of(context).size.height /
+                                                1.2,
                                         child: FutureBuilder<List<PhotoData>>(
                                           future: loadPhotosFromJson(),
                                           builder: (context, snapshot) {
@@ -157,10 +187,8 @@ class MyHomePage extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.of(context)
-                                            .size
-                                            .width /
-                                        20,
+                                    width:
+                                        MediaQuery.of(context).size.width / 20,
                                   ),
                                   Column(
                                     children: [
@@ -169,14 +197,12 @@ class MyHomePage extends StatelessWidget {
                                         style: TextStyle(fontSize: 16),
                                       ),
                                       SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                            4,
-                                        width: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                            2.2,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                4,
+                                        width:
+                                            MediaQuery.of(context).size.height /
+                                                2.2,
                                         child: SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
@@ -246,6 +272,16 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ],
                     ),
+ const SizedBox(
+
+                            height: 30.0,
+                            
+                            child: Text("All Products")),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 2,
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      child: GridViewPage(),
+                    )
                   ],
                 ),
               ),
@@ -267,5 +303,62 @@ class MyHomePage extends StatelessWidget {
     }
 
     return loadedPhotos;
+  }
+}
+
+class LoginDialog extends StatefulWidget {
+  @override
+  _LoginDialogState createState() => _LoginDialogState();
+}
+
+class _LoginDialogState extends State<LoginDialog> {
+  bool _isRegistering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(_isRegistering ? 'Register' : 'Login'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(
+            decoration: InputDecoration(labelText: 'Username'),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(labelText: 'Password'),
+          ),
+          if (_isRegistering) ...[
+            TextField(
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Mobile Number'),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'City'),
+            ),
+          ],
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            setState(() {
+              _isRegistering = !_isRegistering;
+            });
+          },
+          child: Text(_isRegistering ? 'Back to Login' : 'Register'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            // Perform login or registration logic here
+            // For now, simply close the dialog
+            Navigator.of(context).pop();
+          },
+          child: Text(_isRegistering ? 'Register' : 'Login'),
+        ),
+      ],
+    );
   }
 }
